@@ -8,13 +8,11 @@ const CarouselController = ({ groupsOfImages }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % 5);
-    }, 6000);
+      setIndex((prevIndex) => (prevIndex + 1) % 4);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, []);
-
-  console.log('index', index);
 
   return (
     <div className='flex flex-col items-center'>

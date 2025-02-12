@@ -1,7 +1,5 @@
 import React from 'react';
 import Title from './components/Title';
-import Subtitle from './components/Subtitle';
-import Slider from './components/Slider';
 import CarouselController from './components/CarouselController';
 
 const shuffleArray = (array) => {
@@ -14,15 +12,15 @@ const shuffleArray = (array) => {
 };
 
 const Home = async () => {
-  const data = await fetch('https://picsum.photos/v2/list?limit=50');
+  const data = await fetch('https://picsum.photos/v2/list?limit=25');
   const images = await data.json();
 
   const baseGroups = Array.from({ length: 5 }, (_, i) => ({
-    images: shuffleArray(images.slice(i * 10, i * 10 + 10)),
-    marginTop: i === 1 || i === 3 ? '100px' : i === 2 ? '200px' : '0px',
+    images: shuffleArray(images.slice(i * 5, i * 5 + 5)),
+    marginTop: i === 1 || i === 3 ? '180px' : i === 2 ? '260px' : '100px',
   }));
 
-  const groupsOfImages = Array.from({ length: 5 }, () =>
+  const groupsOfImages = Array.from({ length: 4 }, () =>
     baseGroups.map((group) => ({
       ...group,
       images: shuffleArray(group.images),
@@ -33,6 +31,7 @@ const Home = async () => {
     <div className='h-screen'>
       <Title />
       <CarouselController groupsOfImages={groupsOfImages} />
+      <div className='bg-custom-gradient h-[200px] absolute w-full bottom-0'></div>
     </div>
   );
 };
